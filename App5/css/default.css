@@ -1,0 +1,32 @@
+﻿body {
+    background-image: url('/images/phone.jpg');
+    background-repeat: no-repeat;
+    /*background-size: 100%;*/
+}
+
+#messageList {
+    /*width: 390px;*/
+    /*height: calc(100% - 38px);*/
+    /*border: 1px solid silver;*/
+    /*margin-top: 4px;*/
+}
+
+#createAppBar {
+    background-color: rgba(0, 139, 255, 1);
+}
+#createNavBar {
+    background-color: rgba(0, 139, 255, 1);
+}
+
+.currentCity {
+    background-color: rgba(0, 139, 255, 0.6);
+    color: #ffffff;
+    padding: 16px 24px;
+}
+
+.weather {
+    padding: 16px 24px;
+    background-color: rgba(0, 139, 255, 0.6);
+    margin-bottom: 5px;
+    color: #ffffff;
+}

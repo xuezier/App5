@@ -1,0 +1,109 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <title>App5</title>
+
+    <!-- WinJS 引用 -->
+    <!-- 在运行时，ui-themed.css 基于用户的主题设置解析为 ui-themed.theme-light.css
+    或 ui-themed.theme-dark.css。这是 MRT 资源加载功能的一部分。 -->
+    <link href="/WinJS/css/ui-dark.css" rel="stylesheet" />
+    <script src="/WinJS/js/base.js"></script>
+    <script src="/WinJS/js/ui.js"></script>
+
+    <script src="/js/lib/jquery1.11.js"></script>
+    
+    <!-- 自己的引用 -->
+    <script src="js/lib/sea.js"></script>
+    <script src="js/lib/sea.config.js"></script>
+
+    <!-- App5 引用 -->
+    <link href="/css/default.css" rel="stylesheet" />
+    <script src="/js/default.js"></script>
+
+
+
+</head>
+<body class="phone">
+
+
+    <!-- 天气模板-->
+    <div class="weatherTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="weather">
+            <div class="weatherIcon">
+                <img src="#" data-win-bind="src: dayPictureUrl" />
+            </div>
+            <div class="weathercontent" data-win-bind="textContent: date"></div>
+            <h3 class="weathercontent" data-win-bind="textContent: temperature"></h3>
+            <div class=" weathercontent">
+                <span data-win-bind="textContent: weather"></span>
+                &nbsp;&nbsp;&nbsp;
+                <span data-win-bind="textContent: wind"></span>
+            </div>
+        </div>
+    </div>
+    <!-- 今日天气 -->
+    <div class="currentCityTemplate" data-win-control="WinJS.Binding.Template">
+        <div class="currentCity">
+            <h1 data-win-bind="textContent: name"></h1>
+            <br />
+            <br />
+            <h3 data-win-bind="textContent: date"></h3>
+            <br />
+            <h3>PM2.5：<span data-win-bind="textContent: pm25"></span></h3>
+            <br />
+            <div class="weatherIcon">
+                <img src="#" data-win-bind="src: dayPictureUrl" />
+                &nbsp;&nbsp;&nbsp;
+                <img src="#" data-win-bind="src: nightPictureUrl" />
+            </div>
+            <h3>全天：<span data-win-bind="textContent: temperature"></span></h3>
+            <br />
+            <div>
+                <h2>
+                    <span data-win-bind="textContent: weather"></span>
+                    &nbsp;&nbsp;&nbsp;
+                    <span data-win-bind="textContent: wind"></span>
+                </h2>
+            </div>
+        </div>
+    </div>
+
+    <div id="messageList" data-win-control="WinJS.UI.Pivot" data-win-options="{ selectedIndex: 0 }">
+        <div class="pivotItem" data-win-control="WinJS.UI.PivotItem" data-win-options="{ 'header': '今天' }">
+            <div data-win-control="WinJS.UI.Repeater" data-win-options="{ data: Sample.City, template: select('.currentCityTemplate') }"></div>
+        </div>
+        <div class="pivotItem" data-win-control="WinJS.UI.PivotItem" data-win-options="{ 'header': '预报' }">
+            <div data-win-control="WinJS.UI.Repeater" data-win-options="{ data: Sample.Weather, template: select('.weatherTemplate') }"></div>
+        </div>
+        <div class="pivotItem" data-win-control="WinJS.UI.PivotItem" data-win-options="{ 'header': '更换城市' }">
+            <div data-win-control="WinJS.UI.AutoSuggestBox" data-win-options="{
+                placeholderText: 'Type a city',
+                onsuggestionsrequested: Select.suggestionsRequestedHandler,
+                onquerysubmitted: Select.querySubmittedHandler
+            }"></div>
+            <br />
+            <div>请在输入框中输入一个城市名称</div>
+        </div>
+
+
+
+
+    </div>
+
+
+    <!-- NavBar -->
+    <div id="createNavBar" data-win-control="WinJS.UI.NavBar" data-win-options="{placement:'bottom'}">
+        <div data-win-control="WinJS.UI.NavBarContainer" data-win-options="{layout:'vertical'}">
+            <div id="Edit" data-win-control="WinJS.UI.NavBarCommand" data-win-options="{label:'更换城市',icon:'edit',tooltip:'Edit item',section:'primary'}"></div>
+            <div data-win-control="WinJS.UI.NavBarCommand" data-win-options="{label:'刷新',icon:'reshare',tooltip:'Share',section:'primary'}"></div>
+        </div>
+    </div>
+    <!-- AppBar -->
+    <!--<div id="createAppBar" data-win-control="WinJS.UI.AppBar" data-win-options="{placement:'bottom', closedDisplayMode:'minimal'}">
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'Edit',label:'更换城市',icon:'edit',tooltip:'Edit item',section:'primary'}"></button>
+        <button data-win-control="WinJS.UI.AppBarCommand" data-win-options="{id:'cmdShare',label:'刷新',icon:'reshare',tooltip:'Share',section:'primary'}"></button>
+    </div>-->
+</body>
+</html>
